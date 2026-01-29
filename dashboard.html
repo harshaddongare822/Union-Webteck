@@ -1,0 +1,250 @@
+<!-- SEARCH BAR -->
+<div class="search-container">
+  <input 
+    type="text" 
+    id="searchInput" 
+    placeholder="🔍 Search stocks (Reliance, Tata, Bitcoin...)"
+    onkeyup="searchStock()"
+  >
+</div>
+<div class="stock-list">
+
+  <div class="stock-card">
+    <h3>Reliance</h3>
+    <p>Sector: Energy</p>
+  </div>
+
+  <div class="stock-card">
+    <h3>Tata</h3>
+    <p>Sector: Conglomerate</p>
+  </div>
+
+  <div class="stock-card">
+    <h3>Bitcoin</h3>
+    <p>Crypto Currency</p>
+  </div>
+
+  <div class="stock-card">
+    <h3>Dogecoin</h3>
+    <p>Crypto Meme Coin</p>
+  </div>
+
+</div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard | Union Webteck</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<script>
+function searchStock(){
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let cards = document.getElementsByClassName("stock-card");
+
+  for(let i = 0; i < cards.length; i++){
+    let title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+    if(title.includes(input)){
+      cards[i].style.display = "block";
+    } else {
+      cards[i].style.display = "none";
+    }
+  }
+}
+</script>
+<body>
+
+<h1 class="glow-text" style="text-align:center; margin-top:50px;">
+  Welcome to Union Webteck Dashboard 🚀
+</h1>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Union Webteck | Stock Market</title>
+<html>
+<body style="background:black; color:#00ffcc; text-align:center;">
+
+<!-- Chart JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+body{
+    background:#050b10;
+    color:#eafff8;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(90deg,#00ffd5,#00b894);
+    color:#002b23;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 0 30px #00ffd5;
+}
+header h1{
+    font-size:2.5rem;
+    letter-spacing:2px;
+}
+
+/* STOCK CARDS */
+.stock-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:30px;
+}
+.stock{
+    background:#0b1f1a;
+    border:1px solid #00ffd5;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 0 20px rgba(0,255,213,0.4);
+    transition:0.3s;
+}
+.stock:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 35px #00ffd5;
+}
+.stock h2{
+    color:#00ffd5;
+}
+.price{
+    font-size:1.8rem;
+    margin:10px 0;
+}
+.up{
+    color:#00ff9d;
+}
+.down{
+    color:#ff4d4d;
+}
+
+/* CHART */
+.chart-box{
+    width:90%;
+    margin:40px auto;
+    background:#0b1f1a;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 30px rgba(0,255,213,0.5);
+}
+.chart-box h2{
+    text-align:center;
+    color:#00ffd5;
+    margin-bottom:15px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:15px;
+    background:#020a08;
+    border-top:1px solid #00ffd5;
+    color:#7fffe5;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📈 UNION WEBTECK STOCK MARKET</h1>
+    <p>Smart Trading • Live Analysis • Future Finance</p>
+</header>
+
+<section class="stock-container">
+
+    <div class="stock">
+        <h2>Reliance</h2>
+        <p class="price up">₹ 2,485 ▲</p>
+    </div>
+
+    <div class="stock">
+        <h2>TATA</h2>
+        <p class="price up">₹ 1,120 ▲</p>
+    </div>
+
+    <div class="stock">
+        <h2>Bitcoin</h2>
+        <p class="price down">$ 42,150 ▼</p>
+    </div>
+
+    <div class="stock">
+        <h2>Dogecoin</h2>
+        <p class="price up">$ 0.085 ▲</p>
+    </div>
+
+    <div class="stock">
+        <h2>Apple</h2>
+        <p class="price up">$ 190 ▲</p>
+    </div>
+
+    <div class="stock">
+        <h2>Tesla</h2>
+        <p class="price down">$ 235 ▼</p>
+    </div>
+
+</section>
+
+<section class="chart-box">
+    <h2>📊 Market Performance Graph</h2>
+    <canvas id="stockChart"></canvas>
+</section>
+
+<footer>
+    © 2026 Union Webteck | Designed with 💚 Cyan Power
+</footer>
+
+<script>
+const ctx = document.getElementById('stockChart').getContext('2d');
+
+new Chart(ctx,{
+    type:'line',
+    data:{
+        labels:['Mon','Tue','Wed','Thu','Fri','Sat'],
+        datasets:[
+            {
+                label:'Reliance',
+                data:[2400,2450,2480,2470,2485,2500],
+                borderWidth:2
+            },
+            {
+                label:'Bitcoin',
+                data:[42000,41800,43000,42500,42150,43200],
+                borderWidth:2
+            },
+            {
+                label:'Dogecoin',
+                data:[0.075,0.078,0.082,0.080,0.085,0.088],
+                borderWidth:2
+            }
+        ]
+    },
+    options:{
+        responsive:true,
+        plugins:{
+            legend:{labels:{color:'#00ffd5'}}
+        },
+        scales:{
+            x:{ticks:{color:'#7fffe5'}},
+            y:{ticks:{color:'#7fffe5'}}
+        }
+    }
+});
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+  <div id="newStocks"></div>
+</div>
+<button onclick="logout()">Logout</button>
